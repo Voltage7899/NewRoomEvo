@@ -1,5 +1,6 @@
 package com.company.roomdb.RoomDB;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface UserDAO {
 
     @Query("SELECT * FROM user")
-    List<User> getAllUser();
+    LiveData<List<User>> getAllUser();
 
     @Insert
     void insertUser(User user);

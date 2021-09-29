@@ -1,17 +1,19 @@
 package com.company.roomdb;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
 
+import com.company.roomdb.RoomDB.AddViewModel;
 import com.company.roomdb.RoomDB.Database;
 import com.company.roomdb.RoomDB.User;
 import com.company.roomdb.databinding.ActivityAddNewUserBinding;
 
 public class add_new_user extends AppCompatActivity {
 
-
+    private AddViewModel addViewModel;
     private ActivityAddNewUserBinding binding;
 
     @Override
@@ -28,15 +30,14 @@ public class add_new_user extends AppCompatActivity {
                 saveNewUser(binding.name.getText().toString(),binding.lastname.getText().toString());
             }
         });
+        addViewModel=new  ViewModelProvider(this).get(AddViewModel.class);
 
     }
 
     private void saveNewUser(String name, String last){
-        Database database=Database.getInstance(this.getApplicationContext());
-        User user =new User();
-        user.firstName=name;
-        user.lastName=last;
-        database.userDAO().insertUser(user);
+
+
+        addViewModel.AddPartyThroughViewModel(name,last);
 
         finish();
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.company.roomdb.RoomDB.User;
@@ -45,7 +46,11 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
 
     @Override
     public int getItemCount() {
-        return UserList.size();
+        if(UserList==null){
+            return 0;
+        }
+        else{return UserList.size();}
+
     }
     public class UserViewHolder extends RecyclerView.ViewHolder{
 
